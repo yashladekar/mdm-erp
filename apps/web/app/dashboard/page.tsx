@@ -1,15 +1,14 @@
-// import React from "react";
-// import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-// import { DataTable } from "@/components/data-table";
-// import { SectionCards } from "@/components/section-cards";
-// import data from "./data.json";
-import ChartTableSync from "./_components/table";
+import AdvancedFilter from "./_components/advanced-filter";
+import DateRangePicker from "./_components/date-range-picker";
 function page() {
   return (
     <div className="flex flex-1 flex-col">
       <div className="@container/main flex flex-1 flex-col gap-2">
         <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-          <div className=" mx-6 lg:px-6 h-12 bg-accent-foreground" />
+          <div className=" mx-6 lg:px-6 flex items-center justify-between gap-4">
+            <DateRangePicker />
+            <AdvancedFilter />
+          </div>
           {/* <SectionCards />
             <div className="px-4 lg:px-6">
               <ChartAreaInteractive />
@@ -41,8 +40,7 @@ function page() {
               8
             </div>
           </div> */}
-          <ChartTableSync />
-
+          {/* <ChartTableSync /> */}
         </div>
       </div>
     </div>
