@@ -198,7 +198,6 @@ export default function DateRangePicker({
                 })}
               </div>
             </div>
-
             {/* ---------------------- RIGHT: CALENDAR ---------------------- */}
             <div className="p-3 w-[260px]">
               <Calendar
@@ -221,7 +220,6 @@ export default function DateRangePicker({
               />
             </div>
           </div>
-
           {/* ---------------------- CUSTOM RANGE + BUTTONS ---------------------- */}
           <div className="mt-2 px-4 py-3 border-t">
             <h4 className="text-xs font-semibold text-muted-foreground tracking-wider">
