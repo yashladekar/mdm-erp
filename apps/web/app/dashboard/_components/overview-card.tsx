@@ -15,6 +15,7 @@ import {
 
 import {
   Card,
+  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -36,15 +37,17 @@ import {
   revenueChartConfig,
 } from "./crm.config";
 
+import {LeadsCardModal} from "./expandcard";
 const lastMonth = format(subMonths(new Date(), 1), "LLLL");
 
 export function OverviewCards() {
   return (
     <div className="grid grid-cols-1 gap-2 *:data-[slot=card]:shadow-xs sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-      <Card>
+      {/* <Card>
         <CardHeader>
           <CardTitle>New Leads</CardTitle>
           <CardDescription>Last Month</CardDescription>
+          <CardAction>expand</CardAction>
         </CardHeader>
         <CardContent className="size-full">
           <ChartContainer
@@ -90,8 +93,12 @@ export function OverviewCards() {
           <span className="text-xl font-semibold tabular-nums">635</span>
           <span className="text-sm font-medium text-green-500">+54.6%</span>
         </CardFooter>
-      </Card>
-
+      </Card> */}
+    <LeadsCardModal
+      leadsChartConfig={leadsChartConfig}
+      leadsChartData={leadsChartData}
+      lastMonth={lastMonth}
+    />
       <Card className="overflow-hidden pb-0">
         <CardHeader>
           <CardTitle>Proposals Sent</CardTitle>
@@ -219,3 +226,4 @@ export function OverviewCards() {
     </div>
   );
 }
+

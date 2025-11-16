@@ -27,7 +27,7 @@ function MultiCards() {
             Enter your email below to login to your account
           </CardDescription>
           <CardAction>
-            <Button variant="link">Sign Up</Button>
+            {/* <Button variant="link">Sign Up</Button> */}
           </CardAction>
         </CardHeader>
         <CardContent>

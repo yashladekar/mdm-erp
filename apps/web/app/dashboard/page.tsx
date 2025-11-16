@@ -4,6 +4,11 @@ import DataTableWithExport from "./_components/data-table";
 import MultiCards from "@/components/multi-cards";
 import { OverviewCards } from "./_components/overview-card";
 import { InsightCards } from "./_components/insight-cards";
+import { LeadsCardModal } from "./_components/expandcard";
+const leadsChartConfig = {}; // Define leadsChartConfig with appropriate values
+const leadsChartData: Array<Record<string, any>> = []; // Initialize as an empty array or populate with appropriate data
+const lastMonth = ""; // Define lastMonth with appropriate value
+
 function page() {
   return (
     <div className="flex flex-1 flex-col px-4">
@@ -56,6 +61,11 @@ function page() {
               <DataTableWithExport />
             </div>
           </div>
+          <LeadsCardModal
+            leadsChartConfig={leadsChartConfig}
+            leadsChartData={leadsChartData}
+            lastMonth={lastMonth}
+          />
         </div>
       </div>
     </div>
