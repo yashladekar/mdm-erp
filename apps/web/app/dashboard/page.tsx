@@ -9,7 +9,7 @@ import AdvancedChartTableSync from "./_components/table";
 const leadsChartConfig = {}; // Define leadsChartConfig with appropriate values
 const leadsChartData: Array<Record<string, any>> = []; // Initialize as an empty array or populate with appropriate data
 const lastMonth = ""; // Define lastMonth with appropriate value
-
+import ChartWithDetails from "@/components/chart-with-details"
 function page() {
   return (
     <div className="flex flex-1 flex-col px-4">
@@ -62,11 +62,7 @@ function page() {
               <DataTableWithExport />
             </div>
           </div>
-          <LeadsCardModal
-            leadsChartConfig={leadsChartConfig}
-            leadsChartData={leadsChartData}
-            lastMonth={lastMonth}
-          />
+          <ChartWithDetails className="w-full max-w-200" />
         </div>
       </div>
     </div>
