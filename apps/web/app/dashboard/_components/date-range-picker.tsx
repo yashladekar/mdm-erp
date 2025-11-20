@@ -158,11 +158,11 @@ export default function DateRangePicker({
         </PopoverTrigger>
         <PopoverContent
           align="start"
-          className="w-[460px] p-0 rounded-xl border border-gray-200 shadow-none bg-white/2 backdrop-blur-lg backdrop-saturate-200 ring-1 ring-white/6"
+          className="w-[460px] p-0 rounded-xl border dark:border-gray-200/40 shadow-none bg-white/2 backdrop-blur-lg backdrop-saturate-200 ring-1 ring-white/6"
         >
           <div className="flex">
             {/* ---------------------- LEFT PRESETS ---------------------- */}
-            <div className="w-[200px] border-r p-4 flex flex-col gap-3">
+            <div className="w-[200px] border-r dark:border-gray-200/40 p-4 flex flex-col gap-3">
               <h4 className="text-xs font-semibold text-muted-foreground tracking-wider">
                 DATE RANGE
               </h4>
@@ -185,8 +185,8 @@ export default function DateRangePicker({
                         setDraft(r);
                       }}
                       className={cn(
-                        "flex items-center justify-between px-2 py-2 rounded-md hover:bg-accent/40 text-sm",
-                        active && "bg-accent/20"
+                        "flex items-center justify-between px-2 py-2 rounded-md hover:bg-gray-400/20 text-sm space-y-1 my-0.5",
+                        active && "bg-gray-400/40"
                       )}
                     >
                       <span>{p.label}</span>
@@ -221,7 +221,7 @@ export default function DateRangePicker({
             </div>
           </div>
           {/* ---------------------- CUSTOM RANGE + BUTTONS ---------------------- */}
-          <div className="pl-4 pr-2 py-2 border-t">
+          <div className="pl-4 pr-2 py-2 border-t dark:border-gray-200/40">
             <h4 className="text-xs font-semibold text-muted-foreground tracking-wider">
               CUSTOM RANGE
             </h4>
@@ -234,6 +234,7 @@ export default function DateRangePicker({
                   <Label className="text-xs">Start</Label>
                   <Input
                     type="date"
+                    className="dark:border-gray-200/20"
                     value={toDateInput(draft?.from)}
                     onChange={(e) => {
                       const d = e.target.value
@@ -255,6 +256,7 @@ export default function DateRangePicker({
                   <Label className="text-xs">End</Label>
                   <Input
                     type="date"
+                    className="dark:border-gray-200/20"
                     value={toDateInput(draft?.to)}
                     onChange={(e) => {
                       const d = e.target.value
@@ -275,7 +277,8 @@ export default function DateRangePicker({
               {/* Buttons */}
               <div className="flex gap-2">
                 <Button
-                  variant="ghost"
+                  variant="outline"
+                  className="dark:border-gray-200/20"
                   onClick={() => {
                     setDraft(committed);
                     setOpen(false);

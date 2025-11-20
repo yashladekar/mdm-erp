@@ -56,7 +56,7 @@ function page() {
           {/* <AdvancedChartTableSync /> */}
           <div className="grid grid-cols-1 gap-2 *:data-[slot=card]:shadow-xs sm:grid-cols-2 xl:grid-cols-5">
             <div className="aspect-video col-span-1 xl:col-span-2 ">
-              <MyGradePage />
+              <MyGradePage data={[]} />
             </div>
             <div className="aspect-auto col-span-1 xl:col-span-3">
               <DataTableWithExport />
