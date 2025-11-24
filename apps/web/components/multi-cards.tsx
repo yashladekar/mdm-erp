@@ -21,6 +21,7 @@ import {
 } from "@workspace/ui/components/select";
 import { Skeleton } from "@workspace/ui/components/skeleton";
 import { Loader2 } from "lucide-react";
+import { ChartBarMixed } from "./charts/barChart";
 
 // --- Types ---
 
@@ -71,7 +72,7 @@ export function ChartSwitcherCard({
 
   return (
     <Card className={cn(className)}>
-      <CardHeader className="flex flex-col gap-2 space-y-0 pb-2 lg:flex-row lg:items-center lg:justify-between">
+      <CardHeader className="flex flex-col gap-2 space-y-0 lg:flex-row lg:items-center lg:justify-between">
         <div className="space-y-1">
           <CardTitle className="line-clamp-1 text-sm font-medium capitalize lg:text-base">
             {title}
@@ -103,7 +104,7 @@ export function ChartSwitcherCard({
         </div>
       </CardHeader>
 
-      <CardContent className={cn("pt-4", contentClassName)}>
+      <CardContent className={cn("px-2", contentClassName)}>
         {/* Render the selected content */}
         <div className="w-full animate-in fade-in-50 duration-300">
           {currentView?.content}
@@ -132,32 +133,30 @@ export const ChartSwitcherLoading = ({ height = 350 }: { height?: number }) => (
   </Card>
 );
 
-// --- Usage Example (You can copy this logic to your parent component) ---
 
 
 import { Pyramid, Radar, AreaChart } from "lucide-react";
+import { ChartLineDotsColors } from "./charts/lineChart";
 
 export const MyGradePage = ({ data }: { data: any[] }) => {
   const chartOptions: ChartViewOption[] = [
-    {
-      value: "pyramid",
-      label: "Pyramid Chart",
-      icon: AreaChart,
-      content: (
-        <div className="bg-accent-foreground aspect-video">
-          {/* <PyramidChart2 data={data} /> */}
-          chart 1
-        </div>
-      ),
-    },
     {
       value: "bar",
       label: "Bar Chart",
       icon: Pyramid,
       content: (
-        <div className="bg-zinc-400 aspect-video">
-          {/* <PyramidChart data={data} /> */}
-          chart 2
+        <div className="aspect-video">
+          <ChartBarMixed data={data} />
+        </div>
+      ),
+    },
+    {
+      value: "pyramid",
+      label: "Pyramid Chart",
+      icon: AreaChart,
+      content: (
+        <div className="aspect-video">
+          <ChartLineDotsColors />
         </div>
       ),
     },
@@ -166,11 +165,9 @@ export const MyGradePage = ({ data }: { data: any[] }) => {
       label: "Line Chart",
       icon: Radar,
       content: (
-        <div className="bg-amber-700 aspect-video">
-          {/* <ChartLineMultiple data={data} /> */}
-          chart 3
+        <div className="aspect-video">
+          <ChartLineDotsColors />
         </div>
-
       ),
     },
   ];
@@ -182,3 +179,128 @@ export const MyGradePage = ({ data }: { data: any[] }) => {
     />
   );
 };
+
+
+// "use client";
+// import { useState } from "react";
+// import { Pyramid, AreaChart, Loader2, Radar } from "lucide-react";
+// import {
+//   Select,
+//   SelectTrigger,
+//   SelectContent,
+//   SelectValue,
+//   SelectItem,
+// } from "@workspace/ui/components/select";
+// import {
+//   Card,
+//   CardContent,
+//   CardHeader,
+//   CardTitle,
+// } from "@workspace/ui/components/card";
+// import dynamic from "next/dynamic";
+// import { ChartLineMultiple } from "./charts/lineChart";
+// import { Skeleton } from "@workspace/ui/components/skeleton";
+// import PyramidChart2 from "./charts/pyramidChart";
+// // import PyramidChart from "@/components/charts/pyramid/pyramid";
+// const PyramidChart = dynamic(
+//   () => import("./charts/pyramid"),
+//   { ssr: false }
+// );
+
+// const CHART_HEIGHT = 350;
+// interface GradeCount {
+//   [key: string]: number;
+// }
+// interface DataItem {
+//   name: string;
+//   gradeCount: GradeCount;
+// }
+// interface ChartMultiCardProps {
+//   data: DataItem[];
+// }
+
+// export const ChartMultiCard = (data: ChartMultiCardProps) => {
+//   const [chartType, setChartType] = useState("pyramid");
+//   const onChartTypeChange = (value: string) => setChartType(value);
+//   const title = "Grade wise Onsite/Offshore";
+
+//   return (
+//     <Card className="border-none shadow-none w-full max-w-full pb-2">
+//       <CardHeader className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
+//         <CardTitle className="line-clamp-1 capitalize text-sm w-full lg:w-auto">
+//           {title}
+//         </CardTitle>
+//         <div className="w-full max-w-xs lg:max-w-[150px]">
+//           <Select defaultValue={chartType} onValueChange={onChartTypeChange}>
+//             <SelectTrigger className="w-full h-9 rounded-md px-3 text-xs">
+//               <SelectValue placeholder="Chart Type" />
+//             </SelectTrigger>
+//             <SelectContent>
+//               <SelectItem value="BarChart">
+//                 <div className="flex items-center text-xs">
+//                   <Pyramid className="size-4 mr-2 shrink-0" />
+//                   <p className="line-clamp-1">Bar Chart</p>
+//                 </div>
+//               </SelectItem>
+//               <SelectItem value="lineChart">
+//                 <div className="flex items-center text-xs">
+//                   <Radar className="size-4 mr-2 shrink-0" />
+//                   <p className="line-clamp-1">Line Chart</p>
+//                 </div>
+//               </SelectItem>
+//               <SelectItem value="pyramid">
+//                 <div className="flex items-center text-xs">
+//                   <AreaChart className="size-4 mr-2 shrink-0" />
+//                   <p className="line-clamp-1">Pyramid Chart</p>
+//                 </div>
+//               </SelectItem>
+//             </SelectContent>
+//           </Select>
+//         </div>
+//       </CardHeader>
+//       <CardContent>
+//         <div className="w-full">
+//           {chartType === "BarChart" && (
+//             <div
+//               style={{ width: "100%", height: CHART_HEIGHT }}
+//               className="flex justify-center items-center"
+//             >
+//               <PyramidChart data={data.data} />
+//             </div>
+//           )}
+//           {chartType === "pyramid" && (
+//             <div style={{ width: "100%", height: CHART_HEIGHT }}>
+//               <PyramidChart2 data={data.data} />
+//             </div>
+//           )}
+//           {chartType === "lineChart" && (
+//             <div
+//               className="pt-10"
+//               style={{ width: "auto", height: CHART_HEIGHT }}
+//             >
+//               <ChartLineMultiple data={data.data} />
+//             </div>
+//           )}
+//         </div>
+//       </CardContent>
+//     </Card>
+//   );
+// };
+
+// export const ChartLoading = () => (
+//   <Card className="border-none drop-shadow-sm w-full max-w-[900px] mx-auto">
+//     <CardHeader className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
+//       <Skeleton className="h-8 w-48" />
+//       <Skeleton className="h-8 lg:w-[120px] w-full" />
+//     </CardHeader>
+//     <CardContent>
+//       <div
+//         className="w-full flex items-center justify-center"
+//         style={{ height: CHART_HEIGHT }}
+//       >
+//         <Loader2 className="h-6 w-6 text-slate-300 animate-spin" />
+//       </div>
+//     </CardContent>
+//   </Card>
+// );
+

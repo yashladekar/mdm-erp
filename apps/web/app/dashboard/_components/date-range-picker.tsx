@@ -79,10 +79,6 @@ export default function DateRangePicker({
 
   const [open, setOpen] = React.useState(false);
 
-  // ----------------------------------------------------------------------
-  // NUQS INTEGRATION (Updated Defaults)
-  // ----------------------------------------------------------------------
-
   // Default: Start of Today
   const [from, setFrom] = useQueryState(
     "from",
@@ -101,9 +97,6 @@ export default function DateRangePicker({
     to: to ?? undefined,
   }), [from, to]);
 
-  // ----------------------------------------------------------------------
-  // LOCAL STATE (DRAFT)
-  // ----------------------------------------------------------------------
   const [draft, setDraft] = React.useState<DateRange>(committed);
 
   // Calendar month displayed
@@ -155,10 +148,6 @@ export default function DateRangePicker({
 
   const toDateInput = (d?: Date) => (d ? format(d, "yyyy-MM-dd") : "");
 
-  // ----------------------------------------------------------------------
-  // HANDLERS
-  // ----------------------------------------------------------------------
-
   const handleApply = () => {
     setFrom(draft?.from || null);
     setTo(draft?.to || null);
@@ -192,13 +181,13 @@ export default function DateRangePicker({
               <h4 className="text-xs font-semibold text-muted-foreground tracking-wider">
                 DATE RANGE
               </h4>
-              <div className="flex flex-col gap-0">
+              <div className="flex flex-col gap-1">
                 {presets.map((p) => {
                   const active =
                     draft?.from?.toDateString() ===
-                    p.getRange().from?.toDateString() &&
+                      p.getRange().from?.toDateString() &&
                     draft?.to?.toDateString() ===
-                    p.getRange().to?.toDateString();
+                      p.getRange().to?.toDateString();
 
                   return (
                     <button
@@ -210,8 +199,8 @@ export default function DateRangePicker({
                         setDraft(r);
                       }}
                       className={cn(
-                        "flex items-center justify-between px-2 py-2 rounded-md hover:bg-accent/40 text-sm",
-                        active && "bg-accent/20"
+                        "flex items-center justify-between px-2 py-2 rounded-md hover:bg-gray-400/10 text-xs",
+                        active && "bg-gray-400/30"
                       )}
                     >
                       <span>{p.label}</span>
@@ -255,6 +244,7 @@ export default function DateRangePicker({
                   <Label className="text-xs">Start</Label>
                   <Input
                     type="date"
+                    className="text-xs"
                     value={toDateInput(draft?.from)}
                     onChange={(e) => {
                       const d = e.target.value
@@ -269,6 +259,7 @@ export default function DateRangePicker({
                   <Label className="text-xs">End</Label>
                   <Input
                     type="date"
+                    className="text-xs"
                     value={toDateInput(draft?.to)}
                     onChange={(e) => {
                       const d = e.target.value
@@ -282,10 +273,14 @@ export default function DateRangePicker({
               </div>
               {/* Buttons */}
               <div className="flex gap-2">
-                <Button variant="ghost" onClick={handleCancel}>
+                <Button
+                  variant="outline"
+                  className="text-xs"
+                  onClick={handleCancel}
+                >
                   Cancel
                 </Button>
-                <Button className="cursor-pointer" onClick={handleApply}>
+                <Button className="cursor-pointer text-xs" onClick={handleApply}>
                   Apply
                 </Button>
               </div>

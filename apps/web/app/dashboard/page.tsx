@@ -6,7 +6,7 @@ import { OverviewCards } from "./_components/overview-card";
 import { InsightCards } from "./_components/insight-cards";
 import { LeadsCardModal } from "./_components/expandcard";
 import AdvancedChartTableSync from "./_components/table";
-import ChartWithDetails from "@/components/chart-with-details"
+import ChartWithDetails from "@/components/chart-with-details";
 const leadsChartConfig = {}; // Define leadsChartConfig with appropriate values
 const leadsChartData: Array<Record<string, any>> = []; // Initialize as an empty array or populate with appropriate data
 const lastMonth = ""; // Define lastMonth with appropriate value
@@ -21,6 +21,14 @@ function page() {
           </div>
           <OverviewCards />
           <InsightCards />
+          <div className="grid grid-cols-1 gap-2 *:data-[slot=card]:shadow-xs sm:grid-cols-2 xl:grid-cols-5">
+            <div className="aspect-video col-span-1 xl:col-span-2 ">
+              <MyGradePage data={[]} />
+            </div>
+            <div className="aspect-auto col-span-1 xl:col-span-3">
+              <DataTableWithExport />
+            </div>
+          </div>
           {/* <SectionCards />
             <div className="px-4 lg:px-6">
               <ChartAreaInteractive />
@@ -52,16 +60,8 @@ function page() {
             <div className="col-span-2 row-span-2 col-start-5 row-start-3 aspect-auto bg-accent">
               8
             </div>
-          </div> */}
+            </div> */}
           <AdvancedChartTableSync />
-          <div className="grid grid-cols-1 gap-2 *:data-[slot=card]:shadow-xs sm:grid-cols-2 xl:grid-cols-5">
-            <div className="aspect-video col-span-1 xl:col-span-2 ">
-              <MyGradePage data={[]} />
-            </div>
-            <div className="aspect-auto col-span-1 xl:col-span-3">
-              <DataTableWithExport />
-            </div>
-          </div>
         </div>
       </div>
     </div>
